@@ -4,21 +4,23 @@ import XCTest
 import MongoKitten
 @testable import ClangProcessor
 
-class winnowingTests: XCTestCase {
-  override func setUp() {
-    super.setUp()
 
-    continueAfterFailure = false
-  }
-
-  func testForEachWindow() {
+class ArraySlicingTests: XCTestCase {
+  func testSlicing() {
     // The array [1, 2, 3] and window size of 2 should give [[1, 2], [2, 3]].
     XCTAssertTrue([1, 2, 3].slices(ofSize: 2)
       .elementsEqual([[1, 2], [2, 3]]) {$0 == $1})
-    
+
     // Size of the window bigger than actual array.
     XCTAssertTrue([1, 2, 3].slices(ofSize: 5)
       .elementsEqual([[1, 2, 3]], by: {$0 == $1}))
+  }
+}
+
+class ClangProcessorTests: XCTestCase {
+  override func setUp() {
+    super.setUp()
+    continueAfterFailure = false
   }
 
   func testTokenization() {
@@ -71,10 +73,6 @@ class winnowingTests: XCTestCase {
 
     }
   }
-
-  static var allTests = [
-    ("testForEachWindow", testForEachWindow),
-    ]
 }
 
 class DBTests: XCTestCase {
