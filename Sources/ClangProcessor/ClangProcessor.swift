@@ -19,15 +19,26 @@ extension Array {
 }
 
 // Make Arrays conform to Hashable protocol.
-// Only Arrays whose Elements are hashable can be hashed.
-extension Array where Element: Hashable {
+// Only Arrays whose Elements can be transformed to String.
+extension Array where Element: CustomStringConvertible {
   /// Returns hash value for an array.
-  /// - Requires: elements of the array has to conform to the `Hashable`
+  /// - Requires: elements of the array has to conform to the `CustomStringConvertible`
   ///             protocol.
   var hashValue: Int {
-    // DJB hash function.
-    return  self.reduce(5381) {
-      ($0 << 5) &+ $0 &+ $1.hashValue
+    // djb2hash
+    return self.reduce("") {
+      $0 + "\($1)"
+    }.djb2hash
+  }
+}
+
+extension String {
+  /// hash(0) = 5381
+  /// hash(i) = hash(i - 1) * 33 ^ str[i];
+  var djb2hash: Int {
+    let unicodeScalars = self.unicodeScalars.map { $0.value }
+    return unicodeScalars.reduce(5381) {
+      ($0 << 5) &+ $0 &+ Int($1)
     }
   }
 }
