@@ -28,7 +28,7 @@ extension Array where Element: CustomStringConvertible {
     // djb2hash
     return self.reduce("") {
       $0 + "\($1)"
-    }.djb2hash
+      }.djb2hash
   }
 }
 
@@ -214,7 +214,9 @@ public struct ClangProcessor {
       ClangKGram(tokens: Array(slice), in: self.unit)
     }
   }
+}
 
+extension Array where Element == ClangKGram {
   /// Reduces an array of ClangKgrams using the winnowing algorithm.
   /// See [paper](https://theory.stanford.edu/~aiken/publications/papers/sigmod03.pdf)
   /// for more details.
@@ -222,16 +224,16 @@ public struct ClangProcessor {
   /// - Parameter windowSize: Length of the window used in the winnowing
   ///     algorithm.
   /// - Returns: An array of ClangKgrams.
-  public func reduce(kgrams: [ClangKGram], windowSize w: Int) -> [ClangKGram] {
-    if kgrams.isEmpty {
+  public func winnow(using w: Int) -> [ClangKGram] {
+    if self.isEmpty {
       return []
     }
 
     var reduced = [ClangKGram]()
-    kgrams.slices(ofSize: w).forEach { slice in
+    self.slices(ofSize: w).forEach { slice in
       let smallest = slice.min { lhs, rhs in
         lhs.hashValue < rhs.hashValue
-      }!
+        }!
       if reduced.isEmpty || reduced.last! != smallest {
         reduced.append(smallest)
       }

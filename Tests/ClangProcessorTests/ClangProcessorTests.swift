@@ -66,7 +66,7 @@ class ClangProcessorTests: XCTestCase {
       let tokens = processor.tokens()
       let kgrams = processor.kgrams(tokens: tokens, windowSize: 5)
       XCTAssertEqual(kgrams.count, 6)
-      let fingerprints = processor.reduce(kgrams: kgrams, windowSize: 3)
+      let fingerprints = kgrams.winnow(using: 3)
       XCTAssertEqual(fingerprints.count, 4)
     } catch {
       XCTFail("\(error)")
