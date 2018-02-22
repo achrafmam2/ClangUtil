@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/DB.swift",
+      "line": 13,
+      "symbol": "DocumentConvertible.document",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/DB.swift",
+      "line": 18,
+      "symbol": "KgramIndexable.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/achraf/origin/ClangProcessor"
+}
