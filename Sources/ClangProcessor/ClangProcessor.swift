@@ -87,18 +87,18 @@ func translationUnitFromSource(_ src: String,
 }
 
 /// Represents a Clang token.
-typealias ClangToken = Clang.Token
+public typealias ClangToken = Clang.Token
 
 /// Represents a Kgram of Clang tokens.
-struct ClangKGram: Hashable {
+public struct ClangKGram: Hashable {
   /// A Kgram of (consecutive) Clang tokens.
-  let tokens: [ClangToken]
+  public let tokens: [ClangToken]
 
   /// The translation unit of where the tokens are present.
   let unit: TranslationUnit
 
   /// The start location of the kgram in the translation unit.
-  var start: SourceLocation? {
+  public var start: SourceLocation? {
     guard let firstToken = tokens.first else {
       return nil
     }
@@ -106,7 +106,7 @@ struct ClangKGram: Hashable {
   }
 
   /// The end location of the kgram in the translation unit.
-  var end: SourceLocation? {
+  public var end: SourceLocation? {
     guard let lastToken = tokens.last else {
       return nil
     }
@@ -114,18 +114,18 @@ struct ClangKGram: Hashable {
   }
 
   /// The number of elements in the kgram.
-  var count: Int {
+  public var count: Int {
     return tokens.count
   }
 
   /// Hash value of the kgram of tokens.
-  var hashValue: Int {
+  public var hashValue: Int {
     return tokens.map{$0.spelling(in: unit)}.hashValue
   }
 
   /// Two kgrams are equal iff ...
   /// TODO: Think about kgram equality.
-  static func ==(lhs: ClangKGram, rhs: ClangKGram) -> Bool {
+  public static func ==(lhs: ClangKGram, rhs: ClangKGram) -> Bool {
     let lhsTokenSpellings = lhs.tokens.map{$0.spelling(in: lhs.unit)}
     let rhsTokenSpellings = rhs.tokens.map{$0.spelling(in: rhs.unit)}
     return  lhsTokenSpellings == rhsTokenSpellings
@@ -135,37 +135,37 @@ struct ClangKGram: Hashable {
   /// reside.
   /// - Parameter tokens: The clang tokens.
   /// - Parameter in: The translation unit where they reside.
-  init(tokens: [ClangToken], in unit: TranslationUnit) {
+  public init(tokens: [ClangToken], in unit: TranslationUnit) {
     self.tokens = tokens
     self.unit = unit
   }
 }
 
 /// Provides a processing unit for ClangFiles.
-struct ClangProcessor {
+public struct ClangProcessor {
   /// The translation unit from the source url provided.
-  let unit: TranslationUnit
+  public let unit: TranslationUnit
 
   /// Creates a clang processor from a source url.
   /// - Parameter fileURL: Url of the source code.
-  init(fileURL url: URL) throws {
+  public init(fileURL url: URL) throws {
     self.unit = try TranslationUnit(filename: url.path)
   }
 
   /// Creates a clang processor from a string.
   /// - Parameter src: The source code.
   /// - Parameter language: The sources code's language.
-  init(src: String, language: Language) throws {
+  public init(src: String, language: Language) throws {
     self.unit = try translationUnitFromSource(src, language: language)
   }
 
   /// Tells whether a token should be included or not.
-  typealias ClangTokenPredicate = (ClangToken) -> Bool
+  public typealias ClangTokenPredicate = (ClangToken) -> Bool
 
   /// - Parameter isIncluded: A function that takes a token and says if it
   ///     should be included or not.
   /// - Returns: An array of Clang tokens.
-  func tokens(isIncluded f: ClangTokenPredicate = {_ in true}) -> [ClangToken] {
+  public func tokens(isIncluded f: ClangTokenPredicate = {_ in true}) -> [ClangToken] {
     return self.unit.tokens(in: self.unit.cursor.range).filter(f)
   }
 
@@ -173,7 +173,7 @@ struct ClangProcessor {
   /// - Parameter tokens: An array of Clang tokens.
   /// - Parameter windowSize: The length of the kgram.
   /// - Returns: An array of ClangKgrams.
-  func kgrams(tokens: [ClangToken], windowSize w: Int) -> [ClangKGram] {
+  public func kgrams(tokens: [ClangToken], windowSize w: Int) -> [ClangKGram] {
     if tokens.isEmpty {
       return []
     }
@@ -190,7 +190,7 @@ struct ClangProcessor {
   /// - Parameter windowSize: Length of the window used in the winnowing
   ///     algorithm.
   /// - Returns: An array of ClangKgrams.
-  func reduce(kgrams: [ClangKGram], windowSize w: Int) -> [ClangKGram] {
+  public func reduce(kgrams: [ClangKGram], windowSize w: Int) -> [ClangKGram] {
     if kgrams.isEmpty {
       return []
     }

@@ -4,23 +4,23 @@ import Clang
 /// Function prototype for an Indexing functions. Indexers are functions that
 /// index kgrams in a database.
 /// - Parameter T: A `KgramIndexable` type.
-typealias Indexer<T: KgramIndexable> = (T) throws -> Void
+public typealias Indexer<T: KgramIndexable> = (T) throws -> Void
 
 /// A type with a Mongo document representation.
 /// Types that conforms to the `DocumentConvertible` protocol can be used for
 /// storage in a MonogDB collection.
-protocol DocumentConvertible {
+public protocol DocumentConvertible {
   var document: Document? { get }
 }
 
 /// A type that can be indexed as a <Key, Value> in a a MongoDB collection.
-protocol KgramIndexable: Hashable, DocumentConvertible {
+public protocol KgramIndexable: Hashable, DocumentConvertible {
   var value: String { get }
 }
 
 extension ClangKGram: KgramIndexable {
   /// Returns a document that can be stored in a MongoDB collection.
-  var document: Document? {
+  public var document: Document? {
     guard start != nil && end != nil else {
       return nil
     }
@@ -39,7 +39,7 @@ extension ClangKGram: KgramIndexable {
   }
 
   /// Returns the kgram value.
-  var value: String {
+  public var value: String {
     return tokens.map{$0.spelling(in: unit)}.joined(separator: " ")
   }
 }
@@ -55,7 +55,7 @@ extension ClangKGram: KgramIndexable {
 /// ````
 /// - Parameter collection: A MongoDB collection.
 /// - Returns: A function that stores kgrams in an index.
-func generateIndexer<T: KgramIndexable>
+public func generateIndexer<T: KgramIndexable>
   (collection: MongoKitten.Collection) -> Indexer<T> {
   return { element in
     let query = ("key" == element.hashValue) && ("value" == element.value)
