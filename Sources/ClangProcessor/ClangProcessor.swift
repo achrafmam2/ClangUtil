@@ -100,6 +100,27 @@ func translationUnitFromSource(_ src: String,
 /// Represents a Clang token.
 public typealias ClangToken = Clang.Token
 
+/// Returns generic token type name (e.g., comment, literal, punctuation ...).
+/// - Parameter token: A ClangToken.
+/// - Returns: token type.
+func clangTokenTypeName(_ token: Token) -> String {
+  if token is LiteralToken {
+    return "literal"
+  } else if token is CommentToken {
+    return "comment"
+  } else if token is PunctuationToken {
+    return "punctuation"
+  } else if token is KeywordToken {
+    return "keyword"
+  } else if token is IdentifierToken {
+    return "identifier"
+  }
+
+  assertionFailure("\(token)'s type not deduced")
+
+  return ""
+}
+
 /// Represents a Kgram of Clang tokens.
 public struct ClangKGram: Hashable {
   /// A Kgram of (consecutive) Clang tokens.
@@ -131,7 +152,7 @@ public struct ClangKGram: Hashable {
 
   /// Hash value of the kgram of tokens.
   public var hashValue: Int {
-    return tokens.map{$0.spelling(in: unit)}.hashValue
+    return tokens.map { clangTokenTypeName($0) }.hashValue
   }
 
   /// Two kgrams are equal iff ...

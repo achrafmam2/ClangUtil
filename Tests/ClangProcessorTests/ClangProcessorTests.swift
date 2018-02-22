@@ -65,7 +65,7 @@ class winnowingTests: XCTestCase {
       let kgrams = processor.kgrams(tokens: tokens, windowSize: 5)
       XCTAssertEqual(kgrams.count, 6)
       let fingerprints = processor.reduce(kgrams: kgrams, windowSize: 3)
-      XCTAssertEqual(fingerprints.count, 2)
+      XCTAssertEqual(fingerprints.count, 4)
     } catch {
       XCTFail("\(error)")
 

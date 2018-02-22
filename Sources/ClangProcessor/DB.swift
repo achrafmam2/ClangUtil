@@ -40,7 +40,9 @@ extension ClangKGram: KgramIndexable {
 
   /// Returns the kgram value.
   public var value: String {
-    return tokens.map{$0.spelling(in: unit)}.joined(separator: " ")
+    return tokens.map {
+      clangTokenTypeName($0)
+      }.joined(separator: " ")
   }
 }
 
