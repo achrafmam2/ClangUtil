@@ -50,53 +50,6 @@ enum TranslationUnitFromSourceError: Error {
   case TemporaryFileCouldNotBeCreated(path: String)
 }
 
-/// Creates a `TranslationUnit` from a clang source code.
-/// - Parameter src: Represents a clang source code.
-/// - Parameter language: The source code language (e.g.,: c, cpp, objective-c).
-/// - Returns: A `TranslationUnit` for the given source code.
-func translationUnitFromSource(_ src: String,
-                               language: Language) throws -> TranslationUnit {
-  /// Returns URL for temporary directory.
-  let temporaryDirectory = { () -> URL in
-    if #available(OSX 10.12, *) {
-      return FileManager.default.temporaryDirectory
-    } else {
-      return URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
-    }
-  }
-
-  /// Returns correct extension depending on the language passed.
-  let extensionFromLang = { (lang: Language) -> String in
-    switch lang {
-    case .c:
-      return ".c"
-    case .cPlusPlus:
-      return ".cc"
-    case .objectiveC:
-      return ".m"
-    }
-  }
-
-  // Create random file in temporary directory with `clangSource` as content.
-  let randomFileName =
-    UUID().uuidString.lowercased() + extensionFromLang(language)
-  let temporaryClangFileURL =
-    temporaryDirectory().appendingPathComponent(randomFileName)
-
-  if !FileManager.default.createFile(atPath: temporaryClangFileURL.path,
-                                     contents: src.data(using: .utf8)) {
-    // Could not create a temporary file.
-    throw TranslationUnitFromSourceError.TemporaryFileCouldNotBeCreated(
-      path: temporaryClangFileURL.path)
-  }
-
-  defer {
-    try? FileManager.default.removeItem(at: temporaryClangFileURL)
-  }
-
-  return try TranslationUnit(filename: temporaryClangFileURL.path)
-}
-
 /// Represents a Clang token.
 public typealias ClangToken = Clang.Token
 
@@ -188,7 +141,7 @@ public struct ClangProcessor {
   /// - Parameter src: The source code.
   /// - Parameter language: The sources code's language.
   public init(src: String, language: Language) throws {
-    self.unit = try translationUnitFromSource(src, language: language)
+    self.unit = try TranslationUnit(clangSource: src, language: language)
   }
 
   /// Tells whether a token should be included or not.
