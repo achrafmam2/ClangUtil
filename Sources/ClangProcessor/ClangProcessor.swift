@@ -204,14 +204,35 @@ public class ClangProcessor {
   /// - Returns: True or False.
   public typealias CursorPredicate = (_ cursor: Cursor) -> Bool
 
+  /// Default Cursor Predicate function. Filters unimportant cursors for
+  /// plagiarism checking.
+  /// Undesired Cursor kinds are:
+  ///   - CXCursor_TypeRef
+  ///   - CXCursor_UnexposedExpr
+  ///   - CXCursor_UnexposedStmt
+  ///   - CXCursor_UnexposedDecl
+  ///   - CXCursor_DeclRefExpr
+  public static let defaultCursorPredicate: CursorPredicate = { cursor in
+    let undesiredCursorKinds = [
+      CXCursor_TypeRef,
+      CXCursor_UnexposedExpr,
+      CXCursor_UnexposedStmt,
+      CXCursor_UnexposedDecl,
+      CXCursor_DeclRefExpr,
+    ]
+
+    let cursorKind = clang_getCursorKind(cursor.asClang())
+    return !undesiredCursorKinds.contains(cursorKind)
+  }
+
   /// Flattens the AST using a preorder traversal.
   /// - Parameter isIncluded: A function that says wether to include a cursor or
-  ///     not in the final result. Default is all included.
+  ///     not in the final result. Default is `defaultCursorPredicate` function.
   /// - Returns: An array of cursors.
   /// - Note: Declaratations that are imported using #include directives are
   ///     excluded.
   public func flattenAst(
-    isIncluded: CursorPredicate = {_ in true}) -> [Cursor] {
+    isIncluded: CursorPredicate = defaultCursorPredicate) -> [Cursor] {
 
     var ast = [Cursor]()
     self.unit.visitChildren { cursor in
