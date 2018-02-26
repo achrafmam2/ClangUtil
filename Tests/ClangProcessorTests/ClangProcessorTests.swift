@@ -76,6 +76,9 @@ class ClangProcessorTests: XCTestCase {
 }
 
 class DBTests: XCTestCase {
+  // TODO: When test crashes. The test DB is not dropped which may cause a
+  // problem in future runs.
+
   class DummyKgram: KgramIndexable {
     var hash = 0
     var val = ""
@@ -174,6 +177,45 @@ class DBTests: XCTestCase {
             ["file": 0], ["file": 1],
           ]
         ]
+      )
+    } catch {
+      XCTFail("\(error)")
+    }
+  }
+
+  func testKgramLookup() {
+    // This test will fail if the current process cannot connect to the local
+    // mongoDB server.
+    do {
+      let db = try Database("mongodb://localhost/__Test__")
+      let testCollection = db["test"]
+      defer {
+        // Delete database.
+        try! db.drop()
+      }
+
+      let lookup = generateKgramLookup(collection: testCollection)
+
+      let indexKgram = generateIndexer(
+        collection: testCollection) as Indexer<DummyKgram>
+
+      let kgram = DummyKgram()
+
+      try indexKgram(kgram
+        .setHashValue(0)
+        .setValue("abc")
+        .setDoc(["key": "val0"]))
+
+      try indexKgram(kgram
+        .setHashValue(0)
+        .setValue("abc")
+        .setDoc(["key": "val1"]))
+
+      let result = try lookup(0, "abc")
+      XCTAssertNotNil(result)
+      XCTAssertEqual(
+        result!["file_anchors"] as! Document,
+        [["key": "val0"], ["key": "val1"]]
       )
     } catch {
       XCTFail("\(error)")
