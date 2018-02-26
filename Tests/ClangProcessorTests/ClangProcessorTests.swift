@@ -2,6 +2,7 @@ import Clang
 import Foundation
 import XCTest
 import MongoKitten
+import cclang
 @testable import ClangProcessor
 
 
@@ -70,7 +71,30 @@ class ClangProcessorTests: XCTestCase {
       XCTAssertEqual(fingerprints.count, 4)
     } catch {
       XCTFail("\(error)")
+    }
+  }
 
+  func testFlattenAst() {
+    // Test will fail if run from Xcode. Use swift test command from the root
+    // project folder.
+    do {
+      let processor = try ClangProcessor(fileURL:
+        URL(fileURLWithPath: "testFiles/prog-0.c"))
+      let ast = processor.flattenAst().filter { cursor in
+        // Remove UnexposedExpr and DeclarationRefExpr.
+        let cursorKind = clang_getCursorKind(cursor.asClang())
+        return cursorKind != CXCursor_UnexposedExpr &&
+          cursorKind != CXCursor_DeclRefExpr
+      }
+      XCTAssertEqual(
+        ast.map{
+          clang_getCursorKindSpelling(
+            clang_getCursorKind($0.asClang())).asSwift()
+        },
+        ["FunctionDecl", "CompoundStmt", "CallExpr", "StringLiteral",
+         "ReturnStmt", "IntegerLiteral"])
+    } catch {
+      XCTFail("\(error)")
     }
   }
 }

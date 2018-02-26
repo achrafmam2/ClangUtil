@@ -1,5 +1,6 @@
 import Clang
 import Foundation
+import cclang
 
 extension Array {
   /// Returns all slices of size `w`.
@@ -127,7 +128,7 @@ public struct ClangKGram: Hashable {
 }
 
 /// Provides a processing unit for ClangFiles.
-public struct ClangProcessor {
+public class ClangProcessor {
   /// The translation unit from the source url provided.
   public let unit: TranslationUnit
 
@@ -167,6 +168,111 @@ public struct ClangProcessor {
       ClangKGram(tokens: Array(slice), in: self.unit)
     }
   }
+
+  /// Declarations that are part of the original source file before the first
+  /// pass of the Preprocessor.
+  private lazy var inSourceDeclarations: Set<String> = {
+    let file = unit.spelling
+    let trimmedSrc = removeIncludes(source:
+      try! String(contentsOfFile: file, encoding: .utf8))
+    let tmpUnit = try! TranslationUnit(clangSource: trimmedSrc, language: .c)
+
+    // Allowed top declaration.
+    let allowedDeclarations = [
+      CXCursor_FunctionDecl,
+      CXCursor_VarDecl,
+      CXCursor_TypedefDecl,
+      CXCursor_EnumConstantDecl,
+      CXCursor_StructDecl,
+      CXCursor_UnionDecl,
+    ]
+
+    var declarations = Set<String>()
+    tmpUnit.visitChildren { cursor in
+      let cursorKind = clang_getCursorKind(cursor.asClang())
+      if allowedDeclarations.contains(cursorKind) {
+        declarations.insert(cursor.displayName)
+      }
+      return ChildVisitResult.recurse
+    }
+
+    return declarations
+  }()
+
+  /// Function type for cursor filtering.
+  /// - Parameter cursor: A Cursor type.
+  /// - Returns: True or False.
+  public typealias CursorPredicate = (_ cursor: Cursor) -> Bool
+
+  /// Flattens the AST using a preorder traversal.
+  /// - Parameter isIncluded: A function that says wether to include a cursor or
+  ///     not in the final result. Default is all included.
+  /// - Returns: An array of cursors.
+  /// - Note: Declaratations that are imported using #include directives are
+  ///     excluded.
+  public func flattenAst(
+    isIncluded: CursorPredicate = {_ in true}) -> [Cursor] {
+
+    var ast = [Cursor]()
+    self.unit.visitChildren { cursor in
+      // Ignore declarations that are not part of the source code.
+      // When a code includes a library (e.g., #include <stdio.h>) lot of
+      // declarations are brought by the preprocesor which is noise when
+      // checking for plagiarism.
+      if let parent = cursor.lexicalParent, parent == unit.cursor {
+        if !inSourceDeclarations.contains(cursor.displayName) {
+          return ChildVisitResult.continue
+        }
+      }
+
+      if isIncluded(cursor) {
+        ast.append(cursor)
+      }
+
+      return ChildVisitResult.recurse
+    }
+
+    return ast
+  }
+
+  /// Removes include directives from the file (e.g., #include <stdio.h>).
+  /// Includes are replaced by an empty string.
+  ///
+  /// ### Example: ###
+  /// ````
+  /// 1. #include <stdio.h>
+  /// 2. #include <string.h>
+  /// 3. void main(void) {}
+  /// ````
+  /// Will be converted to:
+  /// ````
+  /// 1.
+  /// 2.
+  /// 3. void main(void) {}
+  /// ````
+  ///
+  ///  - Parameter source: Source code to preprocess.
+  /// - Returns: Source code without include directives.
+  ///
+  /// - Remark: The count of the line numbers will not change.
+  private func removeIncludes(source: String) -> String {
+    // Regex definitions.
+    let whitespaces = "[ \t]*"                   // Matches zero of more whitespaces.
+    let libraryName = "(<.*>" + "|" + "\".*\")"  // Matches <.*> or ".*"
+
+    // Matches include directives.
+    let pattern = "#include\(whitespaces)\(libraryName)"
+
+    let regex = try! NSRegularExpression(pattern: pattern)
+    return regex.stringByReplacingMatches(in: source,
+                                          options: [],
+                                          range: self.fullTextRange(in: source),
+                                          withTemplate: "")
+  }
+
+  private func fullTextRange(in s: String) -> NSRange {
+    return NSRange(location: 0, length: s.utf8.count)
+  }
 }
 
 extension Array where Element == ClangKGram {
@@ -196,3 +302,24 @@ extension Array where Element == ClangKGram {
   }
 }
 
+extension CXString {
+  func asSwiftOptionalNoDispose() -> String? {
+    guard self.data != nil else { return nil }
+    guard let cStr = clang_getCString(self) else { return nil }
+    let swiftStr = String(cString: cStr)
+    return swiftStr.isEmpty ? nil : swiftStr
+  }
+
+  func asSwiftOptional() -> String? {
+    defer { clang_disposeString(self) }
+    return asSwiftOptionalNoDispose()
+  }
+
+  func asSwiftNoDispose() -> String {
+    return asSwiftOptionalNoDispose() ?? ""
+  }
+
+  func asSwift() -> String {
+    return asSwiftOptional() ?? ""
+  }
+}
