@@ -80,17 +80,9 @@ class ClangProcessorTests: XCTestCase {
     do {
       let processor = try ClangProcessor(fileURL:
         URL(fileURLWithPath: "testFiles/prog-0.c"))
-      let ast = processor.flattenAst().filter { cursor in
-        // Remove UnexposedExpr and DeclarationRefExpr.
-        let cursorKind = clang_getCursorKind(cursor.asClang())
-        return cursorKind != CXCursor_UnexposedExpr &&
-          cursorKind != CXCursor_DeclRefExpr
-      }
+      let ast = processor.flattenAst()
       XCTAssertEqual(
-        ast.map{
-          clang_getCursorKindSpelling(
-            clang_getCursorKind($0.asClang())).asSwift()
-        },
+        processor.describeAst(ast: ast),
         ["FunctionDecl", "CompoundStmt", "CallExpr", "StringLiteral",
          "ReturnStmt", "IntegerLiteral"])
     } catch {

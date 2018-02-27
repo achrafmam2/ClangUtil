@@ -257,6 +257,21 @@ public class ClangProcessor {
     return ast
   }
 
+  /// Flattens and describe the AST using a preorder traversal.
+  /// Descriptions of the AST is based on the node's kind.
+  ///
+  /// - Returns: An array of strings.
+  /// - Note: Declaratations that are imported using #include directives are
+  ///     excluded.
+  public func describeAst(ast: [Cursor]) -> [String] {
+    return ast.map { cursor in
+      clang_getCursorKindSpelling(
+        clang_getCursorKind(cursor.asClang())
+      ).asSwift()
+    }
+  }
+
+
   /// Removes include directives from the file (e.g., #include <stdio.h>).
   /// Includes are replaced by an empty string.
   ///
@@ -341,7 +356,7 @@ extension CXString {
     return asSwiftOptionalNoDispose() ?? ""
   }
 
-  func asSwift() -> String {
+  public func asSwift() -> String {
     return asSwiftOptional() ?? ""
   }
 }
