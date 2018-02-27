@@ -8,7 +8,7 @@ extension Array {
   /// - Returns: An array of slices.
   /// - Note: If the size `w` is bigger than the count of the array, then
   ///           returns the whole array.
-  func slices(ofSize w: Int) -> [ArraySlice<Element>] {
+  public func slices(ofSize w: Int) -> [ArraySlice<Element>] {
     if self.count < w {
       return [self[...]]
     }
