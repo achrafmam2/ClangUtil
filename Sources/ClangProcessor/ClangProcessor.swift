@@ -296,7 +296,7 @@ public class ClangProcessor {
   }
 }
 
-extension Array where Element == ClangKGram {
+extension Array where Element: Hashable {
   /// Reduces an array of ClangKgrams using the winnowing algorithm.
   /// See [paper](https://theory.stanford.edu/~aiken/publications/papers/sigmod03.pdf)
   /// for more details.
@@ -304,12 +304,12 @@ extension Array where Element == ClangKGram {
   /// - Parameter windowSize: Length of the window used in the winnowing
   ///     algorithm.
   /// - Returns: An array of ClangKgrams.
-  public func winnow(using w: Int) -> [ClangKGram] {
+  public func winnow(using w: Int) -> [Element] {
     if self.isEmpty {
       return []
     }
 
-    var reduced = [ClangKGram]()
+    var reduced = [Element]()
     self.slices(ofSize: w).forEach { slice in
       let smallest = slice.min { lhs, rhs in
         lhs.hashValue < rhs.hashValue
