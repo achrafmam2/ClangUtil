@@ -171,6 +171,7 @@ public class ClangProcessor {
 
   /// Declarations that are part of the original source file before the first
   /// pass of the Preprocessor.
+  /// TODO: This fails when translation unit was created from a source file.
   private lazy var inSourceDeclarations: Set<String> = {
     let file = unit.spelling
     let trimmedSrc = removeIncludes(source:
