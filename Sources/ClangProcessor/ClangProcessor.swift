@@ -57,7 +57,7 @@ public typealias ClangToken = Clang.Token
 /// Returns generic token type name (e.g., comment, literal, punctuation ...).
 /// - Parameter token: A ClangToken.
 /// - Returns: token type.
-func clangTokenTypeName(_ token: Token) -> String {
+func clangTokenTypeName(_ token: ClangToken) -> String {
   if token is LiteralToken {
     return "literal"
   } else if token is CommentToken {
