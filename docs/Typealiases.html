@@ -4,100 +4,141 @@
     <title>Type Aliases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
+
+
     <a title="Type Aliases  Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="index.html">ClangProcessor Docs</a> (94% documented)</p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="index.html">ClangProcessor Reference</a>
-        <img id="carat" src="img/carat.png" />
-        Type Aliases  Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          ClangProcessor Docs
+        </a>
+         (98% documented)
       </p>
-    </div>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">ClangProcessor Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Type Aliases  Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Enums.html">Enumerations</a>
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/TranslationUnitFromSourceError.html">TranslationUnitFromSourceError</a>
+                <a class="nav-group-task-link" href="Classes/ClangProcessor.html">ClangProcessor</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Array.html">Array</a>
+                <a class="nav-group-task-link" href="Enums/KgramLookupError.html">KgramLookupError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/TranslationUnitFromSourceError.html">TranslationUnitFromSourceError</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Functions.html">Functions</a>
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:14ClangProcessor15generateIndexeryxKc11MongoKitten10CollectionC10collection_tAA14KgramIndexableRzlF">generateIndexer(collection:)</a>
+                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:14ClangProcessor25translationUnitFromSource0A0011TranslationD0CSS_AC8LanguageO8languagetKF">translationUnitFromSource(_:language:)</a>
+                <a class="nav-group-task-link" href="Extensions/CXString.html">CXString</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Protocols.html">Protocols</a>
+            <a class="nav-group-name-link" href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/DocumentConvertible.html">DocumentConvertible</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:14ClangProcessor18clangTokenTypeNameSS0A00D0_pF">clangTokenTypeName(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/KgramIndexable.html">KgramIndexable</a>
+                <a class="nav-group-task-link" href="Functions.html#/s:14ClangProcessor15generateIndexeryxKc11MongoKitten10CollectionC10collection_tAA14KgramIndexableRzlF">generateIndexer(collection:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Functions.html#/s:14ClangProcessor19generateKgramLookup4BSON8DocumentVSgSi_SStKc11MongoKitten10CollectionC10collection_tF">generateKgramLookup(collection:)</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Structs.html">Structures</a>
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/ClangKGram.html">ClangKGram</a>
+                <a class="nav-group-task-link" href="Protocols/DocumentConvertible.html">DocumentConvertible</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/ClangProcessor.html">ClangProcessor</a>
+                <a class="nav-group-task-link" href="Protocols/KgramIndexable.html">KgramIndexable</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Typealiases.html">Type Aliases</a>
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a>
+                <a class="nav-group-task-link" href="Structs/ClangKGram.html">ClangKGram</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a>
               </li>
               <li class="nav-group-task">
-                <a href="Typealiases.html#/s:14ClangProcessor7Indexera">Indexer</a>
+                <a class="nav-group-task-link" href="Typealiases.html#/s:14ClangProcessor7Indexera">Indexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:14ClangProcessor11KgramLookupa">KgramLookup</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
             <h1>Type Aliases</h1>
             <p>The following type aliases are available globally.</p>
 
-          </section>
-          <section class="section task-group-section">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -118,7 +159,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">ClangToken</span> <span class="o">=</span> <span class="kt">Clang</span><span class="o">.</span><span class="kt">Token</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ClangToken</span> <span class="o">=</span> <span class="kt">Clang</span><span class="o">.</span><span class="kt">Token</span></code></pre>
 
                         </div>
                       </div>
@@ -128,7 +169,7 @@
               </ul>
             </div>
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -150,7 +191,7 @@ index kgrams in a database.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Indexer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="Protocols/KgramIndexable.html">KgramIndexable</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Indexer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="Protocols/KgramIndexable.html">KgramIndexable</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -176,16 +217,79 @@ index kgrams in a database.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessor11KgramLookupa"></a>
+                    <a name="//apple_ref/swift/Alias/KgramLookup" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessor11KgramLookupa">KgramLookup</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function type for looking up kgrams.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">KgramLookup</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Document</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>hashValue of the kgram.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>kgram value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A MongoDB document or nil if not found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-02-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-03-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>

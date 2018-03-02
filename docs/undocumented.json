@@ -1,17 +1,10 @@
 {
   "warnings": [
     {
-      "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/DB.swift",
-      "line": 13,
-      "symbol": "DocumentConvertible.document",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/DB.swift",
-      "line": 18,
-      "symbol": "KgramIndexable.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/ClangProcessor.swift",
+      "line": 310,
+      "symbol": "ClangProcessor.fullTextRange(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],

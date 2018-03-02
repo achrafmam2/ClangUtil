@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KgramIndexable Protocol Reference</title>
+    <title>CXString Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/KgramIndexable" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/CXString" class="dashAnchor"></a>
 
-    <a title="KgramIndexable Protocol Reference"></a>
+    <a title="CXString Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">ClangProcessor Reference</a>
       <img class="carat" src="../img/carat.png" />
-      KgramIndexable Protocol Reference
+      CXString Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -130,15 +130,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>KgramIndexable</h1>
+            <h1>CXString</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">KgramIndexable</span><span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="../Protocols/DocumentConvertible.html">DocumentConvertible</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CXString</span></code></pre>
 
                 </div>
               </div>
-            <p>A type that can be indexed as a <Key, Value> in a a MongoDB collection.</p>
-
+            
           </div>
         </section>
 
@@ -149,9 +148,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:14ClangProcessor14KgramIndexableP5valueSSv"></a>
-                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14ClangProcessor14KgramIndexableP5valueSSv">value</a>
+                    <a name="/s:SC8CXStringV14ClangProcessorE24asSwiftOptionalNoDisposeSSSgyF"></a>
+                    <a name="//apple_ref/swift/Method/asSwiftOptionalNoDispose()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SC8CXStringV14ClangProcessorE24asSwiftOptionalNoDisposeSSSgyF">asSwiftOptionalNoDispose()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -159,16 +158,121 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A value that represents the current element.</p>
+                        <p>Returns a string representation for the current CXString without disposing
+the current CXString.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">asSwiftOptionalNoDispose</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A String or nil in case the current CXString is not valid.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SC8CXStringV14ClangProcessorE15asSwiftOptionalSSSgyF"></a>
+                    <a name="//apple_ref/swift/Method/asSwiftOptional()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SC8CXStringV14ClangProcessorE15asSwiftOptionalSSSgyF">asSwiftOptional()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a string representation for the current CXString, and disposes
+the current CXString.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">asSwiftOptional</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A String or nil in case the current CXString is not valid.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SC8CXStringV14ClangProcessorE16asSwiftNoDisposeSSyF"></a>
+                    <a name="//apple_ref/swift/Method/asSwiftNoDispose()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SC8CXStringV14ClangProcessorE16asSwiftNoDisposeSSyF">asSwiftNoDispose()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a string representation for the current CXString.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">asSwiftNoDispose</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A String.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SC8CXStringV14ClangProcessorE7asSwiftSSyF"></a>
+                    <a name="//apple_ref/swift/Method/asSwift()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SC8CXStringV14ClangProcessorE7asSwiftSSyF">asSwift()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a string representation for the current CXString.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The current CXString will be disposed after this operation (freed),
+use <code>asSwiftNoDispose</code> if you still want to use the current CXString.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asSwift</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A String.</p>
                       </div>
                     </section>
                   </div>

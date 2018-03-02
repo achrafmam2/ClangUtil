@@ -340,6 +340,9 @@ extension Array where Element: Hashable {
 }
 
 extension CXString {
+  /// Returns a string representation for the current CXString without disposing
+  /// it.
+  /// - Returns: A String or nil in case the current CXString is not valid.
   func asSwiftOptionalNoDispose() -> String? {
     guard self.data != nil else { return nil }
     guard let cStr = clang_getCString(self) else { return nil }
@@ -347,15 +350,23 @@ extension CXString {
     return swiftStr.isEmpty ? nil : swiftStr
   }
 
+  /// Returns a string representation for the current CXString, and disposes it.
+  /// - Returns: A String or nil in case the current CXString is not valid.
   func asSwiftOptional() -> String? {
     defer { clang_disposeString(self) }
     return asSwiftOptionalNoDispose()
   }
 
+  /// Returns a string representation for the current CXString.
+  /// - Returns: A String.
   func asSwiftNoDispose() -> String {
     return asSwiftOptionalNoDispose() ?? ""
   }
 
+  /// Returns a string representation for the current CXString.
+  /// - Note: The current CXString will be disposed after this operation, use
+  ///     `asSwiftNoDispose` if you still want to use the current CXString.
+  /// - Returns: A String.
   public func asSwift() -> String {
     return asSwiftOptional() ?? ""
   }

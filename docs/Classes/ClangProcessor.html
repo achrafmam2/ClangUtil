@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ClangProcessor Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/ClangProcessor" class="dashAnchor"></a>
+
+    <a title="ClangProcessor Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          ClangProcessor Docs
+        </a>
+         (98% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">ClangProcessor Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      ClangProcessor Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ClangProcessor.html">ClangProcessor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/KgramLookupError.html">KgramLookupError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TranslationUnitFromSourceError.html">TranslationUnitFromSourceError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CXString.html">CXString</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:14ClangProcessor18clangTokenTypeNameSS0A00D0_pF">clangTokenTypeName(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:14ClangProcessor15generateIndexeryxKc11MongoKitten10CollectionC10collection_tAA14KgramIndexableRzlF">generateIndexer(collection:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions.html#/s:14ClangProcessor19generateKgramLookup4BSON8DocumentVSgSi_SStKc11MongoKitten10CollectionC10collection_tF">generateKgramLookup(collection:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/DocumentConvertible.html">DocumentConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/KgramIndexable.html">KgramIndexable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ClangKGram.html">ClangKGram</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:14ClangProcessor7Indexera">Indexer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:14ClangProcessor11KgramLookupa">KgramLookup</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>ClangProcessor</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ClangProcessor</span></code></pre>
+
+                </div>
+              </div>
+            <p>Provides a processing unit for ClangFiles.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC4unit0A015TranslationUnitCv"></a>
+                    <a name="//apple_ref/swift/Property/unit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC4unit0A015TranslationUnitCv">unit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The translation unit from the source url provided.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">unit</span><span class="p">:</span> <span class="kt">TranslationUnit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAACAB10Foundation3URLV04fileD0_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(fileURL:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAACAB10Foundation3URLV04fileD0_tKcfc">init(fileURL:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a clang processor from a source url.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">fileURL</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Url of the source code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAACABSS3src_0A08LanguageO8languagetKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(src:language:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAACABSS3src_0A08LanguageO8languagetKcfc">init(src:language:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a clang processor from a string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">src</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">language</span><span class="p">:</span> <span class="kt">Language</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>src</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The source code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>language</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The sources code&rsquo;s language.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC0A14TokenPredicatea"></a>
+                    <a name="//apple_ref/swift/Alias/ClangTokenPredicate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC0A14TokenPredicatea">ClangTokenPredicate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tells whether a token should be included or not.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ClangTokenPredicate</span> <span class="o">=</span> <span class="p">(</span><span class="kt"><a href="../Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC6tokensSay0A05Token_pGSbAdE_pc10isIncluded_tF"></a>
+                    <a name="//apple_ref/swift/Method/tokens(isIncluded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC6tokensSay0A05Token_pGSbAdE_pc10isIncluded_tF">tokens(isIncluded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokens</span><span class="p">(</span><span class="n">isIncluded</span> <span class="nv">f</span><span class="p">:</span> <span class="kt"><a href="../Classes/ClangProcessor.html#/s:14ClangProcessorAAC0A14TokenPredicatea">ClangTokenPredicate</a></span> <span class="o">=</span> <span class="p">{</span><span class="n">_</span> <span class="k">in</span> <span class="kc">true</span><span class="p">})</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isIncluded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that takes a token and says if it
+should be included or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of Clang tokens.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC6kgramsSayAA0A5KGramVGSay0A05Token_pG6tokens_Si10windowSizetF"></a>
+                    <a name="//apple_ref/swift/Method/kgrams(tokens:windowSize:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC6kgramsSayAA0A5KGramVGSay0A05Token_pG6tokens_Si10windowSizetF">kgrams(tokens:windowSize:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Extracts all kgrams from an array of tokens.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">kgrams</span><span class="p">(</span><span class="nv">tokens</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:14ClangProcessor0A5Tokena">ClangToken</a></span><span class="p">],</span> <span class="n">windowSize</span> <span class="nv">w</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/ClangKGram.html">ClangKGram</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tokens</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of Clang tokens.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>windowSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The length of the kgram.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of ClangKgrams.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC20inSourceDeclarations33_48B5086E853CE2377E3316363F5CD9C4LLs3SetVySSGv"></a>
+                    <a name="//apple_ref/swift/Property/inSourceDeclarations" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC20inSourceDeclarations33_48B5086E853CE2377E3316363F5CD9C4LLs3SetVySSGv">inSourceDeclarations</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Declarations that are part of the original source file before the first
+pass of the Preprocessor.
+TODO: This fails when translation unit was created from a source file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">inSourceDeclarations</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC15CursorPredicatea"></a>
+                    <a name="//apple_ref/swift/Alias/CursorPredicate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC15CursorPredicatea">CursorPredicate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function type for cursor filtering.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CursorPredicate</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">cursor</span><span class="p">:</span> <span class="kt">Cursor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cursor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A Cursor type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>True or False.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC22defaultCursorPredicateSb0A00D0_pcvZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultCursorPredicate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC22defaultCursorPredicateSb0A00D0_pcvZ">defaultCursorPredicate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default Cursor Predicate function. Filters unimportant cursors for
+plagiarism checking.
+Undesired Cursor kinds are:</p>
+
+<ul>
+<li>CXCursor_TypeRef</li>
+<li>CXCursor_UnexposedExpr</li>
+<li>CXCursor_UnexposedStmt</li>
+<li>CXCursor_UnexposedDecl</li>
+<li>CXCursor_DeclRefExpr</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultCursorPredicate</span><span class="p">:</span> <span class="kt"><a href="../Classes/ClangProcessor.html#/s:14ClangProcessorAAC15CursorPredicatea">CursorPredicate</a></span> <span class="o">=</span> <span class="p">{</span> <span class="n">cursor</span> <span class="k">in</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC10flattenAstSay0A06Cursor_pGSbAdE_pc10isIncluded_tF"></a>
+                    <a name="//apple_ref/swift/Method/flattenAst(isIncluded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC10flattenAstSay0A06Cursor_pGSbAdE_pc10isIncluded_tF">flattenAst(isIncluded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Flattens the AST using a preorder traversal.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Declaratations that are imported using #include directives are
+excluded.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">flattenAst</span><span class="p">(</span>
+  <span class="nv">isIncluded</span><span class="p">:</span> <span class="kt"><a href="../Classes/ClangProcessor.html#/s:14ClangProcessorAAC15CursorPredicatea">CursorPredicate</a></span> <span class="o">=</span> <span class="n"><a href="../Classes/ClangProcessor.html#/s:14ClangProcessorAAC22defaultCursorPredicateSb0A00D0_pcvZ">defaultCursorPredicate</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Cursor</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isIncluded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A function that says wether to include a cursor or
+not in the final result. Default is <code><a href="../Classes/ClangProcessor.html#/s:14ClangProcessorAAC22defaultCursorPredicateSb0A00D0_pcvZ">defaultCursorPredicate</a></code> function.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of cursors.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC11describeAstSaySSGSay0A06Cursor_pG3ast_tF"></a>
+                    <a name="//apple_ref/swift/Method/describeAst(ast:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC11describeAstSaySSGSay0A06Cursor_pG3ast_tF">describeAst(ast:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Flattens and describe the AST using a preorder traversal.
+Descriptions of the AST is based on the node&rsquo;s kind.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Declaratations that are imported using #include directives are
+excluded.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">describeAst</span><span class="p">(</span><span class="nv">ast</span><span class="p">:</span> <span class="p">[</span><span class="kt">Cursor</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of strings.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC14removeIncludes33_48B5086E853CE2377E3316363F5CD9C4LLS2S6source_tF"></a>
+                    <a name="//apple_ref/swift/Method/removeIncludes(source:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC14removeIncludes33_48B5086E853CE2377E3316363F5CD9C4LLS2S6source_tF">removeIncludes(source:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes include directives from the file (e.g., #include <stdio.h>).
+Includes are replaced by an empty string.</p>
+<h3 id='example' class='heading'>Example:</h3>
+<pre class="highlight swift"><code><span class="mi">1</span><span class="o">.</span> <span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">stdio</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="mi">2</span><span class="o">.</span> <span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre>
+
+<p>Will be converted to:</p>
+<pre class="highlight swift"><code><span class="mi">1</span><span class="o">.</span>
+<span class="mi">2</span><span class="o">.</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">removeIncludes</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>source</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Source code to preprocess.</p>
+<div class="aside aside-remark">
+    <p class="aside-title">Remark</p>
+    The count of the line numbers will not change.
+
+</div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Source code without include directives.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14ClangProcessorAAC13fullTextRange33_48B5086E853CE2377E3316363F5CD9C4LLSC8_NSRangeVSS2in_tF"></a>
+                    <a name="//apple_ref/swift/Method/fullTextRange(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14ClangProcessorAAC13fullTextRange33_48B5086E853CE2377E3316363F5CD9C4LLSC8_NSRangeVSS2in_tF">fullTextRange(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">fullTextRange</span><span class="p">(</span><span class="k">in</span> <span class="nv">s</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSRange</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-03-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

@@ -10,11 +10,13 @@ public typealias Indexer<T: KgramIndexable> = (T) throws -> Void
 /// Types that conforms to the `DocumentConvertible` protocol can be used for
 /// storage in a MonogDB collection.
 public protocol DocumentConvertible {
+  /// A MongoDB document that represents the current element.
   var document: Document? { get }
 }
 
 /// A type that can be indexed as a <Key, Value> in a a MongoDB collection.
 public protocol KgramIndexable: Hashable, DocumentConvertible {
+  /// A value that represents the current element.
   var value: String { get }
 }
 
