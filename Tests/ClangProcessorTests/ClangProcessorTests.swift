@@ -24,6 +24,14 @@ class ClangProcessorTests: XCTestCase {
     continueAfterFailure = false
   }
 
+  func testInit() {
+    XCTAssertNoThrow(try ClangProcessor(src: "int main() {}", language: .c))
+    XCTAssertThrowsError(
+      try ClangProcessor(src: "int main() {return 0}", language: .c)) { error in
+        XCTAssertTrue(error is CompilationError)
+    }
+  }
+
   func testTokenization() {
     do {
       let processor = try ClangProcessor(src: "int main() {}", language: .c)

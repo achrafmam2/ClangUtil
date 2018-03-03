@@ -127,6 +127,13 @@ public struct ClangKGram: Hashable {
   }
 }
 
+/// Compilation Error
+public enum CompilationError: Error {
+  /// Compilation Error
+  // TODO: Attach Error Diagnostics
+  case compilationError
+}
+
 /// Provides a processing unit for ClangFiles.
 public class ClangProcessor {
   /// The translation unit from the source url provided.
@@ -136,6 +143,7 @@ public class ClangProcessor {
   /// - Parameter fileURL: Url of the source code.
   public init(fileURL url: URL) throws {
     self.unit = try TranslationUnit(filename: url.path)
+    try throwCompilationErrorsIfAny()
   }
 
   /// Creates a clang processor from a string.
@@ -143,6 +151,15 @@ public class ClangProcessor {
   /// - Parameter language: The sources code's language.
   public init(src: String, language: Language) throws {
     self.unit = try TranslationUnit(clangSource: src, language: language)
+    try throwCompilationErrorsIfAny()
+  }
+
+  private func throwCompilationErrorsIfAny() throws {
+    for diagnostic in self.unit.diagnostics {
+      if diagnostic.severity == .error {
+        throw CompilationError.compilationError
+      }
+    }
   }
 
   /// Tells whether a token should be included or not.
