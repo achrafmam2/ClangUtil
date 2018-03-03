@@ -10,7 +10,6 @@ To generate documentation using **Jazzy** use:
 jazzy \
   --clean \
   --xcodebuild-arguments -scheme,ClangProcessor-Package \
-  --min-acl private \
   --module ClangProcessor \
   --theme fullwidth
 ````

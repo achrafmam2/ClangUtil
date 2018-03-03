@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           ClangProcessor Docs
         </a>
-         (98% documented)
+         (97% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -56,10 +56,7 @@
             <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/KgramLookupError.html">KgramLookupError</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/TranslationUnitFromSourceError.html">TranslationUnitFromSourceError</a>
+                <a class="nav-group-task-link" href="../Enums/CompilationError.html">CompilationError</a>
               </li>
             </ul>
           </li>
@@ -72,17 +69,11 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/CXString.html">CXString</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:14ClangProcessor18clangTokenTypeNameSS0A00D0_pF">clangTokenTypeName(_:)</a>
-              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions.html#/s:14ClangProcessor15generateIndexeryxKc11MongoKitten10CollectionC10collection_tAA14KgramIndexableRzlF">generateIndexer(collection:)</a>
               </li>
@@ -419,35 +410,6 @@ should be included or not.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:14ClangProcessorAAC20inSourceDeclarations33_48B5086E853CE2377E3316363F5CD9C4LLs3SetVySSGv"></a>
-                    <a name="//apple_ref/swift/Property/inSourceDeclarations" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14ClangProcessorAAC20inSourceDeclarations33_48B5086E853CE2377E3316363F5CD9C4LLs3SetVySSGv">inSourceDeclarations</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Declarations that are part of the original source file before the first
-pass of the Preprocessor.
-TODO: This fails when translation unit was created from a source file.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">inSourceDeclarations</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:14ClangProcessorAAC15CursorPredicatea"></a>
                     <a name="//apple_ref/swift/Alias/CursorPredicate" class="dashAnchor"></a>
                     <a class="token" href="#/s:14ClangProcessorAAC15CursorPredicatea">CursorPredicate</a>
@@ -628,100 +590,6 @@ excluded.
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:14ClangProcessorAAC14removeIncludes33_48B5086E853CE2377E3316363F5CD9C4LLS2S6source_tF"></a>
-                    <a name="//apple_ref/swift/Method/removeIncludes(source:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14ClangProcessorAAC14removeIncludes33_48B5086E853CE2377E3316363F5CD9C4LLS2S6source_tF">removeIncludes(source:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes include directives from the file (e.g., #include <stdio.h>).
-Includes are replaced by an empty string.</p>
-<h3 id='example' class='heading'>Example:</h3>
-<pre class="highlight swift"><code><span class="mi">1</span><span class="o">.</span> <span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">stdio</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="mi">2</span><span class="o">.</span> <span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span> <span class="p">{}</span>
-</code></pre>
-
-<p>Will be converted to:</p>
-<pre class="highlight swift"><code><span class="mi">1</span><span class="o">.</span>
-<span class="mi">2</span><span class="o">.</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span> <span class="p">{}</span>
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">removeIncludes</span><span class="p">(</span><span class="nv">source</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>source</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Source code to preprocess.</p>
-<div class="aside aside-remark">
-    <p class="aside-title">Remark</p>
-    The count of the line numbers will not change.
-
-</div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Source code without include directives.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:14ClangProcessorAAC13fullTextRange33_48B5086E853CE2377E3316363F5CD9C4LLSC8_NSRangeVSS2in_tF"></a>
-                    <a name="//apple_ref/swift/Method/fullTextRange(in:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:14ClangProcessorAAC13fullTextRange33_48B5086E853CE2377E3316363F5CD9C4LLSC8_NSRangeVSS2in_tF">fullTextRange(in:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">fullTextRange</span><span class="p">(</span><span class="k">in</span> <span class="nv">s</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSRange</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
@@ -730,7 +598,7 @@ Includes are replaced by an empty string.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-03-01)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-03-03)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

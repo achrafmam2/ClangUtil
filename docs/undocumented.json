@@ -2,9 +2,9 @@
   "warnings": [
     {
       "file": "/Users/achraf/origin/ClangProcessor/Sources/ClangProcessor/ClangProcessor.swift",
-      "line": 310,
-      "symbol": "ClangProcessor.fullTextRange(in:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "line": 134,
+      "symbol": "CompilationError.compilationError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     }
   ],
