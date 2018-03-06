@@ -3,7 +3,7 @@ import Foundation
 import XCTest
 import MongoKitten
 import cclang
-@testable import ClangProcessor
+@testable import ClangUtil
 
 
 class ArraySlicingTests: XCTestCase {

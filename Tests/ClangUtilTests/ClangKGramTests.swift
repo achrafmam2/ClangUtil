@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 import MongoKitten
-@testable import ClangProcessor
+@testable import ClangUtil
 
 
 class ClangKgramTests: XCTestCase {
