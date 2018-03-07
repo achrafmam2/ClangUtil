@@ -12,7 +12,7 @@ let package = Package(
       targets: ["ClangUtil"]),
     ],
   dependencies: [
-    .package(url: "https://github.com/llvm-swift/ClangSwift.git", .branch("master")),
+    .package(url: "/Users/achraf/GitHub/ClangSwift", .branch("unstable")),
     .package(url: "https://github.com/OpenKitten/MongoKitten.git", from: "4.0.0")
   ],
   targets: [
