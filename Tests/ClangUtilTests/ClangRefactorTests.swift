@@ -6,30 +6,61 @@ import cclang
 
 class ClangRefactorTests: XCTestCase {
   func testRename() {
-    let src = """
-      struct A {};
-      struct B {};
-      int main(void) {
-        struct A {
-          int data;
-          struct A *next;
-        };
-        int a;
-        a = 0;
-        struct A my;
-        struct B not;
-        return 0;
-      }
-"""
-    let unit = try! TranslationUnit(clangSource: src, language: .c)
-    let tokens = unit.tokens(in: unit.cursor.range)
-    XCTAssertEqual(
-      renameIdentifier(tokens[17] as! IdentifierToken, in: unit, with: "List"),
-      ["struct", "A", "{", "}", ";", "struct", "B", "{", "}", ";", "int",
-       "main", "(", "void", ")", "{", "struct", "List", "{", "int", "data", ";",
-       "struct", "List", "*", "next", ";", "}", ";", "int", "a", ";", "a", "=",
-       "0", ";", "struct", "List", "my", ";", "struct", "B", "not", ";",
-       "return", "0", ";", "}"]
-    )
+    let testCases = [
+      ("testFiles/rename-0.c",
+       "testFiles/rename-golden-0.c",
+       17,
+       "List"
+      ),
+
+      ("testFiles/rename-1.c",
+       "testFiles/rename-golden-1.c",
+       1,
+       "List"
+      ),
+
+      ("testFiles/rename-2.c",
+       "testFiles/rename-golden-2.c",
+       21,
+       "j"
+      ),
+    ]
+
+    for testCase in testCases {
+      let filename = testCase.0
+      let golden = testCase.1
+      let identifierIdx = testCase.2
+      let new = testCase.3
+
+      let unit = try! TranslationUnit(filename: filename)
+      let tokens = unit.tokens(in: unit.cursor.range)
+      let identifier = tokens[identifierIdx] as! IdentifierToken
+      let unsavedFile = renameIdentifier(identifier, in: unit, with: new)
+      XCTAssertEqual(
+        unsavedFile.contents,
+        try! String(contentsOfFile: golden)
+      )
+    }
+  }
+
+  func testUnsavedFile() {
+    let unsavedFile = UnsavedFile(filename: "a.c", contents: "void f(void);")
+
+    XCTAssertEqual(unsavedFile.filename, "a.c")
+    XCTAssertTrue(strcmp(unsavedFile.clang.Filename, "a.c") == 0)
+
+    XCTAssertEqual(unsavedFile.contents, "void f(void);")
+    XCTAssertTrue(strcmp(unsavedFile.clang.Contents, "void f(void);") == 0)
+    XCTAssertEqual(unsavedFile.clang.Length, 13)
+
+
+    unsavedFile.filename = "b.c"
+    XCTAssertEqual(unsavedFile.filename, "b.c")
+    XCTAssertTrue(strcmp(unsavedFile.clang.Filename, "b.c") == 0)
+
+    unsavedFile.contents = "int add(int, int);"
+    XCTAssertEqual(unsavedFile.contents, "int add(int, int);")
+    XCTAssertTrue(strcmp(unsavedFile.clang.Contents, "int add(int, int);") == 0)
+    XCTAssertEqual(unsavedFile.clang.Length, 18)
   }
 }
