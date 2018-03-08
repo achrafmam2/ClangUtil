@@ -63,4 +63,24 @@ class ClangRefactorTests: XCTestCase {
     XCTAssertTrue(strcmp(unsavedFile.clang.Contents, "int add(int, int);") == 0)
     XCTAssertEqual(unsavedFile.clang.Length, 18)
   }
+
+  func testWhileToFor() {
+    let testCases = [
+      ("testFiles/whileToFor-0.c",
+       "testFiles/whileToFor-golden-0.c"
+      ),
+      ]
+
+    for testCase in testCases {
+      let filename = testCase.0
+      let golden = testCase.1
+
+      let unit = try! TranslationUnit(filename: filename)
+      let unsavedFile = WhileToFor(in: unit)
+      XCTAssertEqual(
+        unsavedFile.contents,
+        try! String(contentsOfFile: golden)
+      )
+    }
+  }
 }
