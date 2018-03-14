@@ -182,6 +182,46 @@ public class ClangProcessor {
       ).asSwift()
     }
   }
+
+  public func describeCursor(_ cursor: Cursor) -> String {
+    let cursorKindSpelling = clang_getCursorKindSpelling(
+      clang_getCursorKind(cursor.asClang())).asSwift()
+    let type = cursor.type?.description ?? ""
+    let line = cursor.range.start.line
+
+    return "\(cursorKindSpelling) \(type) [\(line)]"
+  }
+
+  public func astDump(
+    isIncluded: @escaping CursorPredicate = defaultCursorPredicate) -> String {
+    var astTree = ""
+
+    func stringify(_ cursor: Cursor, forLevel level: Int) -> String {
+      let dashes = [String](repeating: "-", count: level).reduce(""){$0 + $1}
+      return "\(dashes)\(describeCursor(cursor))\n"
+    }
+
+    func dfs(_ cursor: Cursor, _ level: Int = 0) {
+      let location = cursor.range.start.asClang()
+      if clang_Location_isFromMainFile(location) == 0 {
+        return
+      }
+
+      var adjust = 0
+      if isIncluded(cursor) {
+        astTree += stringify(cursor, forLevel: level)
+        adjust = 1
+      }
+
+      for child in cursor.children() {
+        dfs(child, level + adjust)
+      }
+    }
+
+    dfs(unit.cursor)
+
+    return astTree
+  }
 }
 
 extension Array where Element: Hashable {

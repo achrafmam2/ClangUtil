@@ -1,0 +1,7 @@
+TranslationUnit  [1]
+-FunctionDecl int (void) [2]
+--CompoundStmt  [2]
+---CallExpr int [3]
+----StringLiteral char [13] [3]
+---ReturnStmt  [4]
+----IntegerLiteral int [4]

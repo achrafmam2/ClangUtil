@@ -97,4 +97,19 @@ class ClangProcessorTests: XCTestCase {
       XCTFail("\(error)")
     }
   }
+
+  func testPrintAst() {
+    // Test will fail if run from Xcode. Use swift test command from the root
+    // project folder.
+    do {
+      let processor = try ClangProcessor(fileURL:
+        URL(fileURLWithPath: "testFiles/prog-0.c"))
+      XCTAssertEqual(
+        processor.astDump(),
+        try! String(contentsOfFile: "testFiles/prog-0-ast-dump.in")
+      )
+    } catch {
+      XCTFail("\(error)")
+    }
+  }
 }
