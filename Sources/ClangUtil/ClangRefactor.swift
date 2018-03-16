@@ -65,4 +65,29 @@ func WhileToFor(in unit: TranslationUnit) -> UnsavedFile {
   return UnsavedFile(filename: unit.spelling, contents: contents)
 }
 
+/// Get Function Declaration.
+/// - Parameter unit: Translation unit.
+/// - Returns: An array of declaration.
+func getFunctionDeclarations(in unit: TranslationUnit) -> [String] {
+  var declarations = Set<String>()
+  unit.visitChildren { cursor in
+    if let functionDecl = cursor as? FunctionDecl {
+      let result = functionDecl.resultType!.description
+      let functionName = cursor.description
+
+      let nargs = clang_Cursor_getNumArguments(cursor.asClang())
+      let arguments = (0..<nargs).flatMap { index in
+        functionDecl.parameter(at: Int(index))?.type?.description
+      }.joined(separator: ", ")
+
+      let declaration = "\(result) \(functionName)(\(arguments))"
+      declarations.insert(declaration)
+    }
+
+    return ChildVisitResult.recurse
+  }
+
+  return declarations.map { $0 }
+}
+
 

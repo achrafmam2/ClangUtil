@@ -62,4 +62,23 @@ class ClangRefactorTests: XCTestCase {
       )
     }
   }
+
+  func testGetFunctionDeclarations() {
+    let testCases = [
+      ("testFiles/get-decls.c",
+       ["int main(int, char *[])", "int add(int, int)", "int abs(int)",
+        "void print()"]
+      ),
+      ]
+
+    for testCase in testCases {
+      let filename = testCase.0
+
+      let unit = try! TranslationUnit(filename: filename)
+      XCTAssertEqual(
+        getFunctionDeclarations(in: unit).sorted(),
+        testCase.1.sorted()
+      )
+    }
+  }
 }
