@@ -89,6 +89,7 @@ public let defaultCursorPredicate: CursorPredicate = { cursor in
 /// - Note: Declaratations that are imported using #include directives are
 ///     excluded.
 public func flattenAst(in unit: TranslationUnit,
+                       root: Cursor,
                        isIncluded: CursorPredicate = defaultCursorPredicate) -> [Cursor] {
   var ast = [Cursor]()
   unit.visitChildren { cursor in
@@ -132,8 +133,8 @@ public func getNgrams(in unit: TranslationUnit,
 /// - Returns: An array of strings.
 /// - Note: Declaratations that are imported using #include directives are
 ///     excluded.
-public func describeAst(in unit: TranslationUnit) -> [String] {
-  return flattenAst(in: unit).map { cursor in
+public func describeAst(in unit: TranslationUnit, root: Cursor) -> [String] {
+  return flattenAst(in: unit, root: root).map { cursor in
     clang_getCursorKindSpelling(
       clang_getCursorKind(cursor.asClang())
       ).asSwift()
@@ -150,6 +151,7 @@ func describeCursor(_ cursor: Cursor) -> String {
 }
 
 public func astDump(in unit: TranslationUnit,
+                    root: Cursor,
                     isIncluded: @escaping CursorPredicate = defaultCursorPredicate) -> String {
   var astTree = ""
 
