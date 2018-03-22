@@ -133,7 +133,9 @@ public func getNgrams(in unit: TranslationUnit,
 /// - Returns: An array of strings.
 /// - Note: Declaratations that are imported using #include directives are
 ///     excluded.
-public func describeAst(in unit: TranslationUnit, root: Cursor) -> [String] {
+public func describeAst(in unit: TranslationUnit,
+                        root: Cursor,
+                        isIncluded: CursorPredicate = defaultCursorPredicate) -> [String] {
   return flattenAst(in: unit, root: root).map { cursor in
     clang_getCursorKindSpelling(
       clang_getCursorKind(cursor.asClang())
