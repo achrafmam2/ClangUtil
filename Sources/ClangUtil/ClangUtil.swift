@@ -88,11 +88,10 @@ public let defaultCursorPredicate: CursorPredicate = { cursor in
 /// - Returns: An array of cursors.
 /// - Note: Declaratations that are imported using #include directives are
 ///     excluded.
-public func flattenAst(in unit: TranslationUnit,
-                       root: Cursor,
+public func flattenAst(root: Cursor,
                        isIncluded: CursorPredicate = defaultCursorPredicate) -> [Cursor] {
   var ast = [Cursor]()
-  unit.visitChildren { cursor in
+  root.visitChildren { cursor in
     // Ignore declarations that are not part of the source code.
     // When a code includes a library (e.g., #include <stdio.h>) lot of
     // declarations are brought by the preprocesor which is noise when
@@ -133,10 +132,9 @@ public func getNgrams(in unit: TranslationUnit,
 /// - Returns: An array of strings.
 /// - Note: Declaratations that are imported using #include directives are
 ///     excluded.
-public func describeAst(in unit: TranslationUnit,
-                        root: Cursor,
+public func describeAst(root: Cursor,
                         isIncluded: CursorPredicate = defaultCursorPredicate) -> [String] {
-  return flattenAst(in: unit, root: root).map { cursor in
+  return flattenAst(root: root).map { cursor in
     clang_getCursorKindSpelling(
       clang_getCursorKind(cursor.asClang())
       ).asSwift()
@@ -152,8 +150,7 @@ func describeCursor(_ cursor: Cursor) -> String {
   return "\(cursorKindSpelling) \(type) [\(line)]"
 }
 
-public func astDump(in unit: TranslationUnit,
-                    root: Cursor,
+public func astDump(root: Cursor,
                     isIncluded: @escaping CursorPredicate = defaultCursorPredicate) -> String {
   var astTree = ""
 
@@ -179,7 +176,7 @@ public func astDump(in unit: TranslationUnit,
     }
   }
 
-  dfs(unit.cursor)
+  dfs(root)
 
   return astTree
 }
