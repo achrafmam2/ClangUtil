@@ -4,7 +4,7 @@ import MongoKitten
 /// Represents a Kgram of Clang tokens.
 public struct ClangKGram: Hashable {
   /// A Kgram of (consecutive) Clang tokens.
-  public let tokens: [ClangToken]
+  public let tokens: [Token]
 
   /// The translation unit of where the tokens are present.
   let unit: TranslationUnit
@@ -47,7 +47,7 @@ public struct ClangKGram: Hashable {
   /// reside.
   /// - Parameter tokens: The clang tokens.
   /// - Parameter in: The translation unit where they reside.
-  public init(tokens: [ClangToken], in unit: TranslationUnit) {
+  public init(tokens: [Token], in unit: TranslationUnit) {
     self.tokens = tokens
     self.unit = unit
   }
@@ -56,7 +56,7 @@ public struct ClangKGram: Hashable {
 /// Returns generic token type name (e.g., comment, literal, punctuation ...).
 /// - Parameter token: A ClangToken.
 /// - Returns: token type.
-func clangTokenTypeName(_ token: ClangToken) -> String {
+func clangTokenTypeName(_ token: Token) -> String {
   if token is LiteralToken {
     return "literal"
   } else if token is CommentToken {

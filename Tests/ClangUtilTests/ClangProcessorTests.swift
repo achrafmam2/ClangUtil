@@ -24,36 +24,11 @@ class ClangProcessorTests: XCTestCase {
     continueAfterFailure = false
   }
 
-  func testInit() {
-    XCTAssertNoThrow(try ClangProcessor(src: "int main() {}", language: .c))
-    XCTAssertThrowsError(
-      try ClangProcessor(src: "int main() {return 0}", language: .c)) { error in
-        XCTAssertTrue(error is CompilationError)
-    }
-  }
-
-  func testTokenization() {
+  func testNGrams() {
     do {
-      let processor = try ClangProcessor(src: "int main() {}", language: .c)
-      XCTAssertEqual(
-        processor.tokens().map {$0.spelling(in: processor.unit)},
-        ["int", "main", "(", ")", "{", "}"]
-      )
-      XCTAssertEqual(
-        processor.tokens {!($0 is PunctuationToken)}
-                 .map {$0.spelling(in: processor.unit)},
-        ["int", "main"]
-      )
-    } catch {
-      XCTFail("\(error)")
-    }
-  }
-
-  func testKGrams() {
-    do {
-      let processor = try ClangProcessor(src: "int main() {}", language: .c)
-      let tokens = processor.tokens()
-      let kgrams = processor.kgrams(tokens: tokens, windowSize: 5)
+      let unit = try TranslationUnit(clangSource: "int main() {}", language: .c)
+      let tokens = unit.tokens(in: unit.cursor.range)
+      let kgrams = getNgrams(in: unit, tokens: tokens, windowSize: 5)
       XCTAssertEqual(kgrams.count, 2)
       XCTAssertEqual(
         kgrams[0].tokens.map {$0.spelling(in: kgrams[0].unit)},
@@ -71,9 +46,9 @@ class ClangProcessorTests: XCTestCase {
   func testReduce() {
     do {
       let src = "int main(void) {int a;}"
-      let processor = try ClangProcessor(src: src, language: .c)
-      let tokens = processor.tokens()
-      let kgrams = processor.kgrams(tokens: tokens, windowSize: 5)
+      let unit = try TranslationUnit(clangSource: src, language: .c)
+      let tokens = unit.tokens(in: unit.cursor.range)
+      let kgrams = getNgrams(in: unit, tokens: tokens, windowSize: 5)
       XCTAssertEqual(kgrams.count, 6)
       let fingerprints = kgrams.winnow(using: 3)
       XCTAssertEqual(fingerprints.count, 4)
@@ -86,11 +61,9 @@ class ClangProcessorTests: XCTestCase {
     // Test will fail if run from Xcode. Use swift test command from the root
     // project folder.
     do {
-      let processor = try ClangProcessor(fileURL:
-        URL(fileURLWithPath: "testFiles/prog-0.c"))
-      let ast = processor.flattenAst()
+      let unit = try TranslationUnit(filename: "testFiles/prog-0.c")
       XCTAssertEqual(
-        processor.describeAst(ast: ast),
+        describeAst(in: unit),
         ["FunctionDecl", "CompoundStmt", "CallExpr", "StringLiteral",
          "ReturnStmt", "IntegerLiteral"])
     } catch {
@@ -102,10 +75,9 @@ class ClangProcessorTests: XCTestCase {
     // Test will fail if run from Xcode. Use swift test command from the root
     // project folder.
     do {
-      let processor = try ClangProcessor(fileURL:
-        URL(fileURLWithPath: "testFiles/prog-0.c"))
+      let unit = try TranslationUnit(filename: "testFiles/prog-0.c")
       XCTAssertEqual(
-        processor.astDump(),
+        astDump(in: unit),
         try! String(contentsOfFile: "testFiles/prog-0-ast-dump.in")
       )
     } catch {
