@@ -70,7 +70,7 @@ public class ClangProcessor {
   /// - Parameter fileURL: Url of the source code.
   public init(fileURL url: URL) throws {
     self.unit = try TranslationUnit(filename: url.path, options: TranslationUnitOptions.keepGoing.union(TranslationUnitOptions.incomplete))
-    try throwCompilationErrorsIfAny()
+    //try throwCompilationErrorsIfAny()
   }
 
   /// Creates a clang processor from a string.
