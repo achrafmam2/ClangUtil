@@ -19,7 +19,7 @@ func renameIdentifier(_ identifier: IdentifierToken,
   var contents = try! String(contentsOfFile: unit.spelling, encoding: .utf8)
 
   let tokens = unit.tokens(in: unit.cursor.range)
-  tokens.flatMap { (token) -> SourceRange? in
+  tokens.compactMap { (token) -> SourceRange? in
     let tokenSpelling = token.spelling(in: unit)
     guard let cursorReferenced =
       token.location(in: unit).cursor(in: unit)?.referenced else {
@@ -76,7 +76,7 @@ func getFunctionDeclarations(in unit: TranslationUnit) -> [String] {
       let functionName = cursor.description
 
       let nargs = clang_Cursor_getNumArguments(cursor.asClang())
-      let arguments = (0..<nargs).flatMap { index in
+      let arguments = (0..<nargs).compactMap { index in
         functionDecl.parameter(at: Int(index))?.type?.description
       }.joined(separator: ", ")
 

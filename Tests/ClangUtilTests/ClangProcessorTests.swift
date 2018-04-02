@@ -1,7 +1,7 @@
 import Clang
 import Foundation
 import XCTest
-import MongoKitten
+//import MongoKitten
 import cclang
 @testable import ClangUtil
 

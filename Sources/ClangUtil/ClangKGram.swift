@@ -1,5 +1,5 @@
 import Clang
-import MongoKitten
+//import MongoKitten
 
 /// Represents a Kgram of Clang tokens.
 public struct ClangKGram: Hashable {
@@ -74,30 +74,30 @@ func clangTokenTypeName(_ token: Token) -> String {
   return ""
 }
 
-extension ClangKGram: DocumentRepresentable {
-  /// Returns a document that can be stored in a MongoDB collection.
-  public var document: Document? {
-    guard start != nil && end != nil else {
-      return nil
-    }
-
-    let tokenSpellings = self.tokens.map { token in
-      clangTokenTypeName(token)
-      }.joined(separator: " ")
-
-    return [
-      "tokens": tokenSpellings,
-      "file_path": start?.file.name,
-      "start": [
-        "line": start?.line,
-        "column": start?.column,
-      ],
-      "end": [
-        "line": end?.line,
-        "column": end?.column,
-      ],
-    ]
-  }
-}
+//extension ClangKGram: DocumentRepresentable {
+//  /// Returns a document that can be stored in a MongoDB collection.
+//  public var document: Document? {
+//    guard start != nil && end != nil else {
+//      return nil
+//    }
+//
+//    let tokenSpellings = self.tokens.map { token in
+//      clangTokenTypeName(token)
+//      }.joined(separator: " ")
+//
+//    return [
+//      "tokens": tokenSpellings,
+//      "file_path": start?.file.name,
+//      "start": [
+//        "line": start?.line,
+//        "column": start?.column,
+//      ],
+//      "end": [
+//        "line": end?.line,
+//        "column": end?.column,
+//      ],
+//    ]
+//  }
+//}
 
 
