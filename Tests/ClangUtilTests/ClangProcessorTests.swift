@@ -64,8 +64,8 @@ class ClangProcessorTests: XCTestCase {
       let unit = try TranslationUnit(filename: "testFiles/prog-0.c")
       XCTAssertEqual(
         describeAst(root: unit.cursor),
-        ["FunctionDecl", "CompoundStmt", "CallExpr", "StringLiteral",
-         "ReturnStmt", "IntegerLiteral"])
+        ["TranslationUnit", "FunctionDecl", "CompoundStmt", "CallExpr",
+         "StringLiteral", "ReturnStmt", "IntegerLiteral"])
     } catch {
       XCTFail("\(error)")
     }

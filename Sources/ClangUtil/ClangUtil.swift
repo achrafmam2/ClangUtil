@@ -90,7 +90,7 @@ public let defaultCursorPredicate: CursorPredicate = { cursor in
 ///     excluded.
 public func flattenAst(root: Cursor,
                        isIncluded: CursorPredicate = defaultCursorPredicate) -> [Cursor] {
-  var ast = [Cursor]()
+  var ast = [root]
   root.visitChildren { cursor in
     // Ignore declarations that are not part of the source code.
     // When a code includes a library (e.g., #include <stdio.h>) lot of
